@@ -74,6 +74,17 @@ struct server_context {
     // get server metadata (read-only), can only be called after load_model()
     // not thread-safe, should only be used from the main thread
     server_context_meta get_meta() const;
+
+    // Accessor methods for Java bindings
+    const llama_vocab * get_vocab() const;
+    mtmd_context * get_mctx() const;
+    llama_model * get_model() const;
+    server_queue & get_queue_tasks();
+    server_response & get_queue_results();
+    server_chat_params & get_chat_params();
+    const server_chat_params & get_chat_params() const;
+    const common_params & get_params_base() const;
+    int get_n_ctx_slot() const;
 };
 
 

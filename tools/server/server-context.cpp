@@ -2927,6 +2927,43 @@ server_context_meta server_context::get_meta() const {
     };
 }
 
+// Accessor methods for Java bindings
+const llama_vocab * server_context::get_vocab() const {
+    return impl->vocab;
+}
+
+mtmd_context * server_context::get_mctx() const {
+    return impl->mctx;
+}
+
+llama_model * server_context::get_model() const {
+    return impl->model;
+}
+
+server_queue & server_context::get_queue_tasks() {
+    return impl->queue_tasks;
+}
+
+server_response & server_context::get_queue_results() {
+    return impl->queue_results;
+}
+
+server_chat_params & server_context::get_chat_params() {
+    return impl->chat_params;
+}
+
+const server_chat_params & server_context::get_chat_params() const {
+    return impl->chat_params;
+}
+
+const common_params & server_context::get_params_base() const {
+    return impl->params_base;
+}
+
+int server_context::get_n_ctx_slot() const {
+    return impl->n_ctx / impl->params_base.n_parallel;
+}
+
 
 
 // generator-like API for HTTP response generation
